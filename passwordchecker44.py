@@ -26,16 +26,16 @@ def check_password_strength(password):
      feedback = []
 
      if len(password) >= 8:
-          score += 1   #increased by 1
+          score += 1   #increased score by 1
      else:
           feedback.append("❌ password should be **atleast 8 character long** .")
 
      if re.search(r"[A-Z]", password) and re.search(r"[a-z]", password):
-          score +=1
+          score += 1
      else:
           feedback.append("❌ password should include **both uppercase (A-Z) and lowercase (a-z)letters** .")               
      
-     if re.search(r"/d" , password):
+     if re.search(r"\d" , password):
           score += 1
      else:
           feedback.append("❌ password should include **at least one number (0-9) ** .")
@@ -50,7 +50,7 @@ def check_password_strength(password):
      if score == 4:
           st.success("✅ **strong password** - Your password is secure.") 
      elif score == 3:
-          st.info("⚠️ **Moderate password** - Consider improving by adding more feature")
+          st.info("⚠️ **Moderate password** - Consider improving by adding more feature") 
      else:
           st.error("❌ **week password** - follow the suggestion below to strength it. ")     
 
@@ -59,11 +59,11 @@ def check_password_strength(password):
           with st.expander("🔍 **Improve Your password** "):
                for item in feedback:
                     st.write(item)
-     password = st.text_input("Enter your password:", type="password", help="Enter your password is strong  🔐")
+Password = st.text_input("Enter your password:", type="password", help="Enter your password is strong 🔐")                    
 
-     #Button working
-     if st.button("Check Strength"):
-          if password:
-               check_password_strength(password)
-          else:
-               st.warning(" ⚠️ Please enter a password first!") #show warning if password empty
+#Button working
+if st.button("Check Strength"):
+     if Password:
+          check_password_strength(Password)
+     else:
+          st.warning("⚠️ Please enter a password first !")   #show warning if password empty   
